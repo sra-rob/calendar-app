@@ -1,5 +1,3 @@
-version: "2"
-
 services:
   corretto-resource_server-build:
     build:
@@ -7,6 +5,7 @@ services:
       dockerfile: Dockerfile.build
     volumes:
       - ./calendar-backend/target:/target
+    restart: no
   mysql-resource_db:
     image: mysql:8.1.0
     restart: always
@@ -29,9 +28,11 @@ services:
     image: littlebrownie/corretto-resource_server
     restart: always
     depends_on:
-      - redis-session_server
-      - mysql-resource_db
-      - corretto-resource_server-build:
+      redis-session_server:
+        condition: service_started
+      mysql-resource_db:
+        condition: service_started
+      corretto-resource_server-build:
         condition: service_completed_successfully
   nginx-web_server:
     build:
