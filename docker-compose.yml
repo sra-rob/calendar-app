@@ -31,6 +31,8 @@ services:
     depends_on:
       - redis-session_server
       - mysql-resource_db
+      - corretto-resource_server-build:
+        condition: service_completed_successfully
   nginx-web_server:
     build:
       context: ./calendar-frontend
