@@ -1,0 +1,40 @@
+import { useAuthMutation } from "@/hooks/useAuthMutation";
+import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
+import { useNavigate } from "react-router-dom";
+import { useAuthDispatchContext } from "@/providers/AuthProvider";
+import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
+
+export const login = async (params) => {
+	const { username, password } = params;
+	const userDetails = { username, password };
+	return await fetchWithCsrf("http://localhost:8080/auth/login", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(userDetails),
+		credentials: "include"
+	})
+	.then(res => {
+		if(!res.ok) {
+			throw new Error(res.type + " error");
+		}
+	})
+}
+
+export const useLogin = () => {
+	const setAuth = useAuthDispatchContext();
+	const navigate = useNavigate();
+	const setSnackbar = useSnackbarDispatchContext();
+	return useAuthMutation({
+		mutationFn: login,
+		queryKey: ["login"],
+		onSuccess: () => {
+			setAuth({ isLoggedIn: true });
+			navigate("/app/events");
+		},
+		onError: () => {
+			setSnackbar(prev => [ ...prev, { message: "Error logging in", key: new Date().getTime(), severity: "error" }]);
+		}
+	});
+}

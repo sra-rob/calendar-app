@@ -1,0 +1,43 @@
+version: "2"
+
+services:
+  corretto-resource_server-build:
+    build:
+      context: ./calendar-backend
+      dockerfile: Dockerfile.build
+    volumes:
+      - ./calendar-backend/target:/target
+  mysql-resource_db:
+    image: mysql:8.1.0
+    restart: always
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d/
+    environment:
+      MYSQL_ROOT_PASSWORD: hunter2
+      MYSQL_USER: hunter2
+      MYSQL_PASSWORD: hunter2
+      MYSQL_DATABASE: calendar
+  redis-session_server:
+    image: redis:7.2.1
+    restart: always
+  corretto-resource_server:
+    build:
+      context: ./calendar-backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    image: littlebrownie/corretto-resource_server
+    restart: always
+    depends_on:
+      - redis-session_server
+      - mysql-resource_db
+  nginx-web_server:
+    build:
+      context: ./calendar-frontend
+      dockerfile: Dockerfile
+    image: littlebrownie/nginx-web_server
+    ports:
+      - 80:80
+    restart: always
+    depends_on:
+      - corretto-resource_server
