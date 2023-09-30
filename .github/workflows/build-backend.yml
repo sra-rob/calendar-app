@@ -7,15 +7,11 @@ on:
 jobs: 
   build:
     runs-on: ubuntu-latest
-    steps:           
-    - name: checkout-files  
-      uses: Bhacaz/checkout-files@v2
-      with: 
-        files: calendar-backend
-      # - uses: actions/checkout@v4
-      #   with:
-      #     sparse-checkout: |
-      #       calendar-backend
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            calendar-backend/pom.xml
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
