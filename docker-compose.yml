@@ -37,6 +37,4 @@ services:
         condition: service_started
 volumes:
   mysql-data:
-    external: true
   redis-data:
-    external: true
