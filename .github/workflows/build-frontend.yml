@@ -1,0 +1,30 @@
+name: build-frontend
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  build:
+    runs-on: ubuntu:latest
+    steps:
+      - uses: action/checkout@v4
+      - name: Setup node
+      - uses: actions/setupNode@v3
+        with:
+          node-version: "20"
+      - name: Build react app
+        run: |
+          cd ./calendar-frontend
+          npm run build
+      - name: Login to docker hub
+      - uses: action/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build and publish
+      - uses: docker/build-push-action@v5
+        with:
+          context: "./calendar-frontend"
+          push: true
+          tags: littlebrownie/calendar-frontend:latest
