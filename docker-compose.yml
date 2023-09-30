@@ -8,6 +8,8 @@ services:
   calendar-backend:
     image: littlebrownie/calendar-backend:latest
     restart: always
+    ports:
+      - 8080:8080
     depends_on:
       mysql:
         condition:  service_started
@@ -16,6 +18,8 @@ services:
   calendar-frontend:
     image: littlebrownie/calendar-frontend:latest
     restart: always
+    ports:
+      - 80:80
     depends_on:
       calendar-backend:
         condition: service_started
