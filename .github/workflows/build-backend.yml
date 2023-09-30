@@ -16,7 +16,7 @@ jobs:
           distribution: "temurin"
           cache: maven
       - name: Change to project directory
-        run: cd calendar-backend
+        run: cd ../../calendar-backend
       - name: Build with Maven
         run: mvn clean install
     
