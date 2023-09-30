@@ -1,4 +1,0 @@
-FROM amazoncorretto:17-alpine
-COPY . .
-RUN chmod +x mvnw
-CMD ["./mvnw", "install"]

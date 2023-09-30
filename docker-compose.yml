@@ -1,30 +1,34 @@
 services:
-  nginx-web_server-build:
-    build:
-      context: ./calendar-frontend
-      dockerfile: Dockerfile.build
-    volumes:
-      - ./calendar-frontend/dist:/dist
-  corretto-resource_server-build:
-    build:
-      context: ./calendar-backend
-      dockerfile: Dockerfile.build
-    volumes:
-      - ./calendar-backend/target:/target
-    restart: no
-  mysql-resource_db:
-    image: mysql:8.1.0
-    restart: always
-    volumes:
-      - ./init:/docker-entrypoint-initdb.d/
-    environment:
-      MYSQL_ROOT_PASSWORD: hunter2
-      MYSQL_USER: hunter2
-      MYSQL_PASSWORD: hunter2
-      MYSQL_DATABASE: calendar
+  # nginx-web_server-build:
+  #   build:
+  #     context: ./calendar-frontend
+  #     dockerfile: Dockerfile.build
+  #   volumes:
+  #     - ./calendar-frontend/dist:/dist
+  # corretto-resource_server-build:
+  #   build:
+  #     context: ./calendar-backend
+  #     dockerfile: Dockerfile.build
+  #   volumes:
+  #     - ./calendar-backend/target:/target
+  #   restart: no
+
+  # ADD SECRETS
+  # mysql-resource_db:
+  #   image: mysql:8.1.0
+  #   restart: always
+  #   volumes:
+  #     - ./init:/docker-entrypoint-initdb.d/
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: hunter2
+  #     MYSQL_USER: hunter2
+  #     MYSQL_PASSWORD: hunter2
+  #     MYSQL_DATABASE: calendar
+
   redis-session_server:
     image: redis:7.2.1
     restart: always
+  # CHANGE TO USE BUILT IMAGE
   corretto-resource_server:
     build:
       context: ./calendar-backend
@@ -40,6 +44,7 @@ services:
         condition: service_started
       corretto-resource_server-build:
         condition: service_completed_successfully
+  # CHANGE TO USE BUILT IMAGE
   nginx-web_server:
     build:
       context: ./calendar-frontend
