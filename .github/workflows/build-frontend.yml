@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: action/checkout@v4
       - name: Setup node
-      - uses: actions/setupNode@v3
+        uses: actions/setupNode@v3
         with:
           node-version: "20"
       - name: Build react app
@@ -18,12 +18,12 @@ jobs:
           cd ./calendar-frontend
           npm run build
       - name: Login to docker hub
-      - uses: action/login-action@v3
+        uses: action/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build and publish
-      - uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v5
         with:
           context: "./calendar-frontend"
           push: true
