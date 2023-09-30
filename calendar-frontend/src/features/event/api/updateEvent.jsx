@@ -6,7 +6,7 @@ import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 
 const updateEvent = (params) => {
 	const { event } = params;
-	return fetchWithCsrf("http://localhost:8080/api/v1/event", {
+	return fetchWithCsrf("http://34.174.200.5:8080/api/v1/event", {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",

@@ -4,7 +4,7 @@ import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
 import { useLogin } from "./login";
 
 const register = async (user) => {
-	return await fetchWithCsrf("http://localhost:8080/auth/register", {
+	return await fetchWithCsrf("http://34.174.200.5:8080/auth/register", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
