@@ -2,6 +2,8 @@ services:
   mysql:
     image: littlebrownie/calendar-db:latest
     restart: always
+    volume:
+      mysql:/var/lib/mysql
   redis:
     image: redis:7.2.1
     restart: always
