@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@v4
+      - uses: actions/checkout@v4
       - name: Setup node
         uses: actions/setupNode@v3
         with:
@@ -18,7 +18,7 @@ jobs:
           cd ./calendar-frontend
           npm run build
       - name: Login to docker hub
-        uses: action/login-action@v3
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
