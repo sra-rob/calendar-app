@@ -21,7 +21,7 @@ jobs:
           push: true
           tags: littlebrownie/calendar-db:latest
           build-args: |
-            MYSQL_ROOT_USER=${{ secrets.DATASOURCE_USERNAME }}
+            # MYSQL_ROOT_USER=${{ secrets.DATASOURCE_USERNAME }}
             MYSQL_ROOT_PASSWORD=${{ secrets.DATASOURCE_ROOT_PASSWORD }}
-            MYSQL_DATABASE=${{ secrets.DATASOURCE_DATABASE }}
+            # MYSQL_DATABASE=${{ secrets.DATASOURCE_DATABASE }}
       
