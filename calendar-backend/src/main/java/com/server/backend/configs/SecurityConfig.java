@@ -49,8 +49,7 @@ public class SecurityConfig {
                 r -> {
                     CorsConfiguration configuration = new CorsConfiguration();
                     configuration.setAllowedOrigins(List.of(
-                            "http://34.174.200.5",
-														"*"
+                            "http://34.174.200.5"
                     ));
                     configuration.setAllowedHeaders(List.of("*"));
                     configuration.setAllowCredentials(true);
