@@ -18,6 +18,7 @@ public class SessionFilter extends OncePerRequestFilter {
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+				System.out.println("Entering SessionFilter");
         if(!request.getRequestURI().equals("/auth/login")) {
             String username = (String) session.getAttribute("username");
             if (username != null) {
