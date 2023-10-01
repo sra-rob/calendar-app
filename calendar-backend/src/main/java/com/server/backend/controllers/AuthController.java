@@ -21,7 +21,7 @@ public class AuthController {
     public void logout(HttpSession session) {
         session.invalidate();
     }
-    @GetMapping("user")
+    @PostMapping("user")
     public boolean user(HttpSession session) {
 				System.out.println("Entering User Endpoint");
         String username = (String) session.getAttribute("username");

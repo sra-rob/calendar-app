@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const isLoggedIn = async () => {
 			await fetchWithCsrf("http://34.174.200.5:8080/auth/user", {
+				method: "POST",
 				credentials: "include"
 			}).then(res => {
 				console.log(res)
