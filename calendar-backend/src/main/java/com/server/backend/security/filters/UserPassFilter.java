@@ -23,7 +23,6 @@ public class UserPassFilter extends OncePerRequestFilter {
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-				System.out.println("\n\n\n\n\n\n\nUSER_PASS_FILTER\n\n\n\n\n\n\n\n\n\n")
         if(request.getRequestURI().equals("/auth/login")) {
             UserDto unAuthedUser = objectMapper.readValue(request.getInputStream(), UserDto.class);
             String username = unAuthedUser.getUsername();
