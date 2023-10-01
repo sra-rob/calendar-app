@@ -59,7 +59,7 @@ export const Register = () => {
 					required
 				/>
 				<Button 
-					text="Login"
+					text="Register"
 					buttonType="accent"
 					type="submit"
 					onClick={onSubmit}
