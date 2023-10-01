@@ -10,8 +10,12 @@ export const AuthProvider = ({ children }) => {
 		const isLoggedIn = async () => {
 			await fetchWithCsrf("http://34.174.200.5:8080/auth/user", {
 				credentials: "include"
-			}).then(res => res.json())
+			}).then(res => {
+				console.log(res)
+				return res.json();
+			})
 			.then(loginStatus => {
+				console.log(loginStatus);
 				setAuth({ isLoggedIn: loginStatus })
 			});
 		}
