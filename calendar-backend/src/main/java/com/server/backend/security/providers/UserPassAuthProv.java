@@ -24,7 +24,7 @@ public class UserPassAuthProv implements AuthenticationProvider {
         String username = auth.getName();
         String password = auth.getPassword();
         SecurityUser securityUser = (SecurityUser) userDetailsService.loadUserByUsername(username);
-        if(securityUser.getPassword().equals(password)) {
+        if(passwordEncoder.matches(password, securityUser.getPassword())) {
             return new UserPassAuth(username, password, true);
         } else {
             return authentication;
