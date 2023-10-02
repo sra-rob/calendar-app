@@ -32,7 +32,7 @@ export const Link = ({ href, text, buttonType }) => {
 					text-decoration: none;
 					color: var(--color-white);
 					${styles}
-					padding-block: 0.70rem;
+					padding-block: 0.67rem;
 					font-weight: 200;
 					padding-inline: 1rem;
 					border-radius: 4px;

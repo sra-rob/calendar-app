@@ -1,4 +1,5 @@
-import { useAuthMutation } from "@/hooks/useAuthMutation";
+// import { useAuthMutation } from "@/hooks/useAuthMutation";
+import { useMutation } from "react-query";
 import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
 import { useNavigate } from "react-router-dom";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
@@ -26,7 +27,7 @@ export const useLogin = () => {
 	const setAuth = useAuthDispatchContext();
 	const navigate = useNavigate();
 	const setSnackbar = useSnackbarDispatchContext();
-	return useAuthMutation({
+	return useMutation({
 		mutationFn: login,
 		queryKey: ["login"],
 		onSuccess: () => {
@@ -34,6 +35,7 @@ export const useLogin = () => {
 			navigate("/app/events");
 		},
 		onError: () => {
+			setAuth({ isLoggedIn: false });
 			setSnackbar(prev => [ ...prev, { message: "Error logging in", key: new Date().getTime(), severity: "error" }]);
 		}
 	});

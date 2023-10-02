@@ -4,6 +4,8 @@ import { calculateDateInterval } from "@/utils/calculateDateInterval";
 import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
 import { useEventContext } from "@/providers/EventProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
+import { useAuthDispatchContext } from "@/providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const createEvent = (params) => {
 	const { event } = params;
@@ -26,6 +28,9 @@ export const useCreateEvent = () => {
 	const { startDate: prevStartDate, endDate: prevEndDate } = calculateDateInterval(dayjs(displayedDate).subtract(1, "month"));
 	const { startDate: nextStartDate, endDate: nextEndDate } = calculateDateInterval(dayjs(displayedDate).add(1, "month"));
 	const setSnackPack = useSnackbarDispatchContext();
+	const setAuth = useAuthDispatchContext();
+	const navigate = useNavigate();
+
 	return useMutation({
 		mutationFn: createEvent,
 		onSuccess: (res) => {
@@ -47,6 +52,8 @@ export const useCreateEvent = () => {
 			});
 		},
 		onError: () => {
+			setAuth({ isLoggedIn: false });
+			navigate("/auth/login");
 			setSnackPack(prev => [ ...prev, { message: "Error adding event", key: new Date().getTime(), severity: "error" }]);
 		}
 	});

@@ -3,27 +3,31 @@ import { useMutation, useQueryClient } from "react-query";
 import { calculateDateInterval } from "@/utils/calculateDateInterval";
 import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
+import { useAuthDispatchContext } from "@/providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const deleteEvent = (params) => {
 	const { id } = params;
-	fetchWithCsrf(`http://34.174.230.159:8080/api/v1/event/${id}`, {
+	return fetchWithCsrf(`http://34.174.230.159:8080/api/v1/event/${id}`, {
 		method: "DELETE",
-		headers: {
-		},
 		credentials: "include"
-	});
+	})
+	.then(res => {
+		if(!res.ok) throw new Error("really bad error");
+	})
 }
-
 export const useDeleteEvent = (displayedDate, id) => {
 	const queryClient = useQueryClient();
 	const { startDate, endDate } = calculateDateInterval(displayedDate);
 	const { startDate: prevStartDate, endDate: prevEndDate } = calculateDateInterval(dayjs(displayedDate).subtract(1, "month"));
 	const { startDate: nextStartDate, endDate: nextEndDate } = calculateDateInterval(dayjs(displayedDate).add(1, "month"));
 	const setSnackPack = useSnackbarDispatchContext();
+	const setAuth = useAuthDispatchContext();
+	const navigate = useNavigate();
 	return useMutation({
 		mutationFn: deleteEvent,
 		onSuccess: () => {
-			setSnackPack(prev => [ ...prev, { message: "Event deleted", key: new Date().getTime(), severity: "success" }]);
+			console.log("herewklrjekl")
 			const prevData = queryClient.getQueryData(["dateInterval", (prevStartDate + prevEndDate)]);
 			queryClient.setQueryData(["dateInterval", (startDate + endDate)], (oldData) => {
 				return (oldData || []).filter(data => data.id !== id);
@@ -39,8 +43,11 @@ export const useDeleteEvent = (displayedDate, id) => {
 					return (oldData || []).filter(data => data.id !== id);
 				});
 			}
+			setSnackPack(prev => [ ...prev, { message: "Event deleted", key: new Date().getTime(), severity: "success" }]);
 		},
-		onFailure: () => {
+		onError: () => {
+			setAuth({ isLoggedIn: false });
+			navigate("/auth/login");
 			setSnackPack(prev => [ ...prev, { message: "Error deleting event", key: new Date().getTime(), severity: "error" }]);
 		}
 	});

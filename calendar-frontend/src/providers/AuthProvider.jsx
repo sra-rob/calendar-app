@@ -15,7 +15,8 @@ export const AuthProvider = ({ children }) => {
 				return res.json();
 			})
 			.then(loginStatus => {
-				setAuth({ isLoggedIn: loginStatus })
+				if(loginStatus != auth.isLoggedIn)
+					setAuth({ isLoggedIn: loginStatus })
 			});
 		}
 		isLoggedIn();

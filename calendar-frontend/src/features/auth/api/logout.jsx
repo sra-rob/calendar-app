@@ -1,4 +1,5 @@
-import { useAuthMutation } from "@/hooks/useAuthMutation";
+// import { useAuthMutation } from "@/hooks/useAuthMutation";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
@@ -13,15 +14,15 @@ const logout = async () => {
 export const useLogout = () => {
 	const navigate = useNavigate();
 	const setAuth = useAuthDispatchContext();
-	return useAuthMutation({
+	return useMutation({
 		queryKey: "logout",
 		mutationFn: logout,
 		onSuccess: () => {
-			navigate(0);
+			navigate("/auth/login");
 			setAuth({ isLoggedIn: false })
 		},
 		onFailure: () => {
-
+			setAuth({ isLoggedIn: false });
 		}
 	});
 }

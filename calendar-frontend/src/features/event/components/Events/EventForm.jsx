@@ -30,9 +30,7 @@ export const EventForm = ({
 			<Form 
 				onSubmit={onSubmit}
 			>
-				<InputGroup
-					label="Event title"
-				>
+				<InputGroup>
 					<TextField 
 						label="Event name (Required)" 
 						fullWidth 

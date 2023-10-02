@@ -68,19 +68,26 @@ export const Landing = () => {
 				<RowContainer
 					alignItems="flex-start"
 					justifyContent="flex-start"
-					g="3rem"
+					g="1rem"
 				>
 					<Box>
 						<h3
 							css={
 								css`
 									color: var(--color-accent-700);
+									text-align: center;
 								`
 							}
 						>
 							Backend
 						</h3>
-						<ul>
+						<ul
+							css={
+								css`
+									text-align: center;
+								`
+							}
+						>
 							<li>Spring Web</li>
 							<li>Spring Security</li>
 							<li>Hibernate</li>
@@ -95,15 +102,46 @@ export const Landing = () => {
 							css={
 								css`
 									color: var(--color-accent-700);
+									text-align: center;
 								`
 							}
 						>Frontend</h3>
-						<ul>
+						<ul
+							css={
+								css`
+									text-align: center;
+								`
+							}
+						>
 							<li>React</li>
 							<li>React Query</li>
 							<li>Emotion</li>
 							<li>Material UI</li>
 							<li>CSS</li>
+						</ul>
+					</Box>
+					<Box>
+						<h3
+							css={
+								css`
+									color: var(--color-accent-700);
+									text-align: center;
+								`
+							}
+						>
+							Deployment
+						</h3>
+						<ul
+							css={
+								css`
+									text-align: center;
+								`
+							}
+						>
+							<li>Google Compute Engine</li>
+							<li>Github Actions</li>
+							<li>Docker</li>
+							<li>Docker Hub</li>
 						</ul>
 					</Box>
 				</RowContainer>
@@ -144,7 +182,30 @@ export const Landing = () => {
 						`
 					}
 				>
-					The backend is a <b>REST API</b> created using <b>Spring Web</b>. To handle the web application's authentication and authorization I am using <b>Spring Security</b> and <b>Spring Session</b>. For session management I am using <b>Spring Data Redis</b>. My database of choice is <b>MySQL</b>. <b>Hibernate</b> is the ORM, and I am using <b>Spring Data JPA</b> to reduce the complexity of building the data access layers.
+					The backend is a <b>REST API<sub>1</sub></b> created using <b>Spring Web</b>. To handle the web application's authentication and authorization I am using <b>Spring Security</b> and <b>Spring Session</b>. For session management I am using <b>Spring Data Redis</b>. My database of choice is <b>MySQL</b>. <b>Hibernate</b> is the ORM, and I am using <b>Spring Data JPA</b> to reduce the complexity of building the data access layers.
+				</p>
+				<p
+					css={
+						css`
+							word-break:word-break;
+							line-height: 1.5;
+						`
+					}
+				>
+					Finally, for version control, I am using <b>Github</b>. After I push to my main branch<b><sub>2</sub></b>, the <b>Github Actions</b> I've developed insert my secrets and builds and dockerizes my Spring application. Likewise it builds and dockerizes my React application. After building my containers, Github Actions pushes my containers to <b>Dockerhub</b>, where the containers are later be pulled onto my <b>Google Compute Engine</b> virtual machine and ran. 
+				</p>
+				<p
+					css={
+						css`
+							align-self: start;
+							font-size: 0.65rem;
+						`
+					}
+				>
+					1. Sessions can be considered a violation of REST principals. Though I'm of the opinion that as long as an API has the <a href="https://stackoverflow.com/a/6068298">properties of a pure function</a> it can still be considered RESTful.
+					<br />
+					<br />
+					2. Don't push to your main branch.
 				</p>
 				<Box>
 					<RowContainer
@@ -156,7 +217,7 @@ export const Landing = () => {
 							onClick={isLoggedIn ? handleAuthenticatedUser : handleUnauthenticatedUser}
 						/>
 						<Link 
-							href="https://google.com"
+							href="https://github.com/sra-rob/calendar-app"
 							text="Github"
 							buttonType="primary"
 						/>
