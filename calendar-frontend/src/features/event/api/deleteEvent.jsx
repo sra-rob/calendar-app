@@ -27,7 +27,6 @@ export const useDeleteEvent = (displayedDate, id) => {
 	return useMutation({
 		mutationFn: deleteEvent,
 		onSuccess: () => {
-			console.log("herewklrjekl")
 			const prevData = queryClient.getQueryData(["dateInterval", (prevStartDate + prevEndDate)]);
 			queryClient.setQueryData(["dateInterval", (startDate + endDate)], (oldData) => {
 				return (oldData || []).filter(data => data.id !== id);

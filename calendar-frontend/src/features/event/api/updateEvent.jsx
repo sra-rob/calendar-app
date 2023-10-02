@@ -45,7 +45,6 @@ export const useUpdateEvent = (displayedDate) => {
 			setSnackPack(prev => [ ...prev, { message: "Event updated", key: new Date().getTime(), severity: "success" }]);
 		},
 		onError: () => {
-			console.log("ERROR ERRROR ERROR")
 			setAuth({ isLoggedIn: false });
 			navigate("/auth/login");
 			setSnackPack(prev => [ ...prev, { message: "Error updating event", key: new Date().getTime(), severity: "error" }]);
