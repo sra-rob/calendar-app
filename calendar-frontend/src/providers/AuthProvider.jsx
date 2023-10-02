@@ -12,11 +12,9 @@ export const AuthProvider = ({ children }) => {
 				method: "POST",
 				credentials: "include"
 			}).then(res => {
-				console.log(res)
 				return res.json();
 			})
 			.then(loginStatus => {
-				console.log(loginStatus);
 				setAuth({ isLoggedIn: loginStatus })
 			});
 		}

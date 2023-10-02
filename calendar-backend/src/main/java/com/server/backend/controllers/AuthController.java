@@ -23,9 +23,7 @@ public class AuthController {
     }
     @PostMapping("user")
     public boolean user(HttpSession session) {
-				System.out.println("Entering User Endpoint");
         String username = (String) session.getAttribute("username");
-				System.out.println("username is %s".formatted(username));
         return username == null ? false : true;
     }
     @PostMapping("register")
