@@ -6,7 +6,7 @@ import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 
 const deleteEvent = (params) => {
 	const { id } = params;
-	fetchWithCsrf(`http://34.174.200.5:8080/api/v1/event/${id}`, {
+	fetchWithCsrf(`http://34.174.230.159:8080/api/v1/event/${id}`, {
 		method: "DELETE",
 		headers: {
 		},
