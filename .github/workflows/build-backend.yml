@@ -17,8 +17,8 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: |
-          export DATASOURCE_USERNAME=${{ secrets.DATASOURCE_USERNAME }}
-          export DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }}
+          # export DATASOURCE_USERNAME=${{ secrets.DATASOURCE_USERNAME }}
+          # export DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }}
           cd ./calendar-backend
           mvn clean install
       - name: Login to Docker Hub
@@ -32,3 +32,7 @@ jobs:
           context: "./calendar-backend"
           push: true
           tags: littlebrownie/calendar-backend:latest
+          build-args: |
+            DATASOURCE_USERNAME=${{ secrets.DATASOURCE_USERNAME }}
+            DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }}
+            
