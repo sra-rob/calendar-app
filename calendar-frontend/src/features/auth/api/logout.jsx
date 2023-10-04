@@ -4,7 +4,7 @@ import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 
 const logout = async () => {
-	return await fetchWithCsrf("http://34.174.230.159:8080/auth/logout", {
+	return await fetchWithCsrf("http://34.174.200.5:8080/auth/logout", {
 		method: "POST",
 		credentials: "include"
 	})

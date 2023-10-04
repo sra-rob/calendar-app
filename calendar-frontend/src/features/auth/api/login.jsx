@@ -7,7 +7,7 @@ import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 export const login = async (params) => {
 	const { username, password } = params;
 	const userDetails = { username, password };
-	return await fetchWithCsrf("http://34.174.230.159:8080/auth/login", {
+	return await fetchWithCsrf("http://34.174.200.5:8080/auth/login", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
