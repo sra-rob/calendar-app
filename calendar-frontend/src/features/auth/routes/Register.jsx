@@ -22,7 +22,7 @@ export const Register = () => {
 			setSnackPack(prev => [...prev, { message: `${fieldName} must be less than ${max} characters.`, key: new Date().getTime(), severity: "error" }]);
 			return false;
 		}
-
+		return true;
 	}
 	const handleUsernameChange = (e) => {
 		form.set("username", e.target.value);
