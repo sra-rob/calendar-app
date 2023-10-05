@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const deleteEvent = (params) => {
 	const { id } = params;
-	return fetchWithCsrf(`http://34.174.200.5:8080/api/v1/event/${id}`, {
+	return fetchWithCsrf(`http://calendar-site.online:8080/api/v1/event/${id}`, {
 		method: "DELETE",
 		credentials: "include"
 	})
