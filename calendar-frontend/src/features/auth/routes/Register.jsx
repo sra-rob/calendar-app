@@ -13,6 +13,17 @@ export const Register = () => {
 	const [ form, setForm ] = useState(formData);
 	const registerQuery = useRegister();
 	const setSnackPack = useSnackbarDispatchContext();
+	const checkLength = (text, min, max, fieldName) => {
+		if(text.length < min) {
+			setSnackPack(prev => [...prev, { message: `${fieldName} must be greater than ${min} characters.`, key: new Date().getTime(), severity: "error" }]);
+			return false;
+		}
+		if(text.length > max) {
+			setSnackPack(prev => [...prev, { message: `${fieldName} must be less than ${max} characters.`, key: new Date().getTime(), severity: "error" }]);
+			return false;
+		}
+
+	}
 	const handleUsernameChange = (e) => {
 		form.set("username", e.target.value);
 		setForm(form);
@@ -34,6 +45,8 @@ export const Register = () => {
 			setSnackPack(prev => [ ...prev, { message: "Passwords do not match", key: new Date().getTime(), severity: "error" }]);
 			return;
 		}
+		checkLength(username, 5, 15, "Username");
+		checkLength(username, 8, 15, "Password");
 		const user = { username, password };
 		registerQuery.mutate(user);
 	}
