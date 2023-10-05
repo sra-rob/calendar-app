@@ -45,8 +45,9 @@ export const Register = () => {
 			setSnackPack(prev => [ ...prev, { message: "Passwords do not match", key: new Date().getTime(), severity: "error" }]);
 			return;
 		}
-		checkLength(username, 5, 15, "Username");
-		checkLength(username, 8, 15, "Password");
+		const usernameIsCorrectLength = checkLength(username, 5, 15, "Username");
+		const passwordIsCorrectLength = checkLength(password, 8, 15, "Password");
+		if(!usernameIsCorrectLength || !passwordIsCorrectLength) return;
 		const user = { username, password };
 		registerQuery.mutate(user);
 	}
