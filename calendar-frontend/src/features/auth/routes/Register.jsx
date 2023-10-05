@@ -45,18 +45,21 @@ export const Register = () => {
 					placeholder="Username"
 					required
 					onChange={handleUsernameChange}
+					inputLength={{ minLength: 5 }}
 				/>
 				<TextField 
 					placeholder="Password"
 					type="password"
 					onChange={handlePasswordChange}
 					required
+					inputLength={{ minLength: 8 }}
 				/>
 				<TextField 
 					placeholder="Repeat password"
 					type="password"
 					onChange={handleRepeatPasswordChange}
 					required
+					inputProps={{ minLength: 8 }}
 				/>
 				<Button 
 					text="Register"
