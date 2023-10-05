@@ -20,8 +20,8 @@ services:
   calendar-backend:
     image: littlebrownie/calendar-backend:latest
     restart: always
-    # ports:
-    #   - 8080:8080
+    ports:
+      - 8080:8080
     depends_on:
       mysql:
         condition: service_healthy
@@ -30,18 +30,11 @@ services:
   calendar-frontend:
     image: littlebrownie/calendar-frontend:latest
     restart: always
-    # ports:
-    #   - 8000:8000
+    ports:
+      - 80:80
     depends_on:
       calendar-backend:
         condition: service_started
-  reverse-proxy:
-    build:
-      context: ./proxy
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
-      - 443:443
 volumes:
   mysql-data:
   redis-data:
