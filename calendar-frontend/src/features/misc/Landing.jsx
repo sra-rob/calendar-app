@@ -192,7 +192,7 @@ export const Landing = () => {
 						`
 					}
 				>
-					Finally, for version control, I am using <b>Github</b>. After I push to my main branch<b><sub>2</sub></b>, the <b>Github Actions</b> I've developed insert my secrets and builds and dockerizes my Spring application. Likewise it builds and dockerizes my React application. After building my containers, Github Actions pushes my containers to <b>Dockerhub</b>, where the containers are later be pulled onto my <b>Google Compute Engine</b> virtual machine and ran. 
+					Finally, for version control, I am using <b>Github</b>. After I push to my main branch<b><sub>2</sub></b>, <b>Github Actions</b> inserts my secrets and builds and dockerizes my Spring application. Likewise it builds and dockerizes my React application. After building my containers, Github Actions pushes my containers to <b>Dockerhub</b>, where the containers are later be pulled onto my <b>Google Compute Engine</b> virtual machine and ran. 
 				</p>
 				<p
 					css={
