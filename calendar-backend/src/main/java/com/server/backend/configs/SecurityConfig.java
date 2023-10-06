@@ -53,7 +53,7 @@ public class SecurityConfig {
                 r -> {
                     CorsConfiguration configuration = new CorsConfiguration();
                     configuration.setAllowedOrigins(List.of(
-                            "http://calendar-site.online/"
+                            "https://calendar-site.online/"
                     ));
                     configuration.setAllowedHeaders(List.of("*"));
                     configuration.setAllowCredentials(true);
