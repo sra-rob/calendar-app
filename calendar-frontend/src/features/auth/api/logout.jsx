@@ -4,7 +4,7 @@ import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 
 const logout = async () => {
-	return await fetchWithCsrf("http://calendar-site.online:8080/auth/logout", {
+	return await fetchWithCsrf("http://calendar-site.online:8080/api/v1/auth/logout", {
 		method: "POST",
 		credentials: "include"
 	})

@@ -38,9 +38,6 @@ services:
       test: ["CMD", "service", "nginx", "status"]
       timeout: 20s
       retries: 30
-    # depends_on:
-    #   calendar-backend:
-    #     condition: service_healthy
   reverse-proxy:
     build:
       context: ./reverse-proxy
