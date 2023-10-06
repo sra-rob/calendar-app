@@ -43,28 +43,26 @@ public class SecurityConfig {
                 )
                 .addFilterBefore(new UserPassFilter(authManager, objectMapper), UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(new SessionFilter(session), UserPassFilter.class);
-        http.cors().disable();
-        http.csrf().disable();
-//        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
-//        http
-//            .csrf((csrf) -> csrf
-//                            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//                            .csrfTokenRequestHandler(requestHandler)
-//            );
-//        http.cors(c -> c.configurationSource(
-//                r -> {
-//                    CorsConfiguration configuration = new CorsConfiguration();
-//                    configuration.setAllowedOrigins(List.of(
-//                            "https://calendar-site.online/"
-//                    ));
-//                    configuration.setAllowedHeaders(List.of("*"));
-//                    configuration.setAllowCredentials(true);
-//                    configuration.setAllowedMethods(List.of(
-//                            "GET", "POST", "DELETE", "PUT", "OPTIONS"
-//                    ));
-//                    return configuration;
-//                }
-//        ));
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+        http
+            .csrf((csrf) -> csrf
+                            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                            .csrfTokenRequestHandler(requestHandler)
+            );
+        http.cors(c -> c.configurationSource(
+                r -> {
+                    CorsConfiguration configuration = new CorsConfiguration();
+                    configuration.setAllowedOrigins(List.of(
+                            "https://calendar-site.online:8000"
+                    ));
+                    configuration.setAllowedHeaders(List.of("*"));
+                    configuration.setAllowCredentials(true);
+                    configuration.setAllowedMethods(List.of(
+                            "GET", "POST", "DELETE", "PUT", "OPTIONS"
+                    ));
+                    return configuration;
+                }
+        ));
         return http.build();
     }
 }
