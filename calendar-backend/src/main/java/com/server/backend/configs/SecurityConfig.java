@@ -42,8 +42,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new UserPassFilter(authManager, objectMapper), UsernamePasswordAuthenticationFilter.class)
-                .addFilterAfter(new SessionFilter(session), UserPassFilter.class)
-                .requiresChannel().anyRequest().requiresSecure();
+                .addFilterAfter(new SessionFilter(session), UserPassFilter.class);
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
         http
             .csrf((csrf) -> csrf
