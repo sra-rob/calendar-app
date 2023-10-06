@@ -22,6 +22,9 @@ public class EventController {
             @PathVariable LocalDate intervalStart,
             @PathVariable LocalDate intervalEnd
     ) {
+        System.out.println("GET EVENTS");
+        System.out.println(intervalStart);
+        System.out.println(intervalEnd);
         return eventService.findByInterval(intervalStart, intervalEnd);
     }
     @PostMapping

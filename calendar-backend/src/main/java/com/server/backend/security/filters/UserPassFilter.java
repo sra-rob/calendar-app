@@ -27,6 +27,10 @@ public class UserPassFilter extends OncePerRequestFilter {
         System.out.println(request.getHeader("X-XSRF-TOKEN"));
         System.out.println("SESSION::");
         System.out.println(request.getSession());
+        System.out.println("URL:: ");
+        System.out.println(request.getRequestURL());
+        System.out.println("URI:: ");
+        System.out.println(request.getRequestURI());
         if(request.getRequestURI().equals("/auth/login")) {
             UserDto unAuthedUser = objectMapper.readValue(request.getInputStream(), UserDto.class);
             String username = unAuthedUser.getUsername();
