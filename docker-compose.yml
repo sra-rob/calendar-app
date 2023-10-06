@@ -35,6 +35,17 @@ services:
     depends_on:
       calendar-backend:
         condition: service_started
+  # certbot service ??
+  reverse-proxy:
+    build:
+      context: ./reverse-proxy
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    volumes: 
+      - ./letsencrypt:/letsencrypt
+      - ./certs:/etc/letsencrypt
 volumes:
   mysql-data:
   redis-data:
