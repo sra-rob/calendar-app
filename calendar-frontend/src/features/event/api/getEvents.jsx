@@ -6,7 +6,7 @@ import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
 
 export const getEvents = (startDate, endDate) => {
-	return fetchWithCsrf(`https://calendar-site.online:8080/api/v1/event/${startDate}/${endDate}`, {
+	return fetchWithCsrf(`https://calendar-site.online/api/v1/event/${startDate}/${endDate}`, {
 		credentials: "include"
 	})
 		.then(res => res.json());
