@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const updateEvent = async (params) => {
 	const { event } = params;
-	return await fetchWithCsrf("http://calendar-site.online:8080/api/v1/event", {
+	return await fetchWithCsrf("https://calendar-site.online:8080/api/v1/event", {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",

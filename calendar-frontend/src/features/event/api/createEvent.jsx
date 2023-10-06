@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const createEvent = (params) => {
 	const { event } = params;
-	return fetchWithCsrf("http://calendar-site.online:8080/api/v1/event", {
+	return fetchWithCsrf("https://calendar-site.online:8080/api/v1/event", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

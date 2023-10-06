@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 	const [ auth, setAuth ] = useState({});
 	useEffect(() => {
 		const isLoggedIn = async () => {
-			await fetchWithCsrf("http://calendar-site.online:8080/api/v1/auth/user", {
+			await fetchWithCsrf("https://calendar-site.online:8080/api/v1/auth/user", {
 				method: "POST",
 				credentials: "include"
 			}).then(res => {
