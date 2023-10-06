@@ -28,6 +28,8 @@ public class AuthController {
     }
     @PostMapping("register")
     public UserDto register(@RequestBody UserDto user) {
+        System.out.println("REGISTERING");
+        System.out.println(user);
         return userService.register(user);
     }
     @GetMapping("csrf")

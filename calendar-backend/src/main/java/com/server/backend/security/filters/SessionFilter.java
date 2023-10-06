@@ -21,6 +21,7 @@ public class SessionFilter extends OncePerRequestFilter {
         if(!request.getRequestURI().equals("/auth/login")) {
             String username = (String) session.getAttribute("username");
             if (username != null) {
+                System.out.println("SESSION AUTH");
                 SessionAuth auth = new SessionAuth(username, true);
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }

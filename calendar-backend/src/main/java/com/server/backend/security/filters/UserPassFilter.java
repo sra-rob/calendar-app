@@ -34,6 +34,7 @@ public class UserPassFilter extends OncePerRequestFilter {
             UserPassAuth authentication = new UserPassAuth(username, password, false);
             UserPassAuth auth = (UserPassAuth) authManager.authenticate(authentication);
             if(auth.isAuthenticated()) {
+                System.out.println("UserPass Auth");
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 request.getSession().setAttribute("username", username);
             } else filterChain.doFilter(request, response);
