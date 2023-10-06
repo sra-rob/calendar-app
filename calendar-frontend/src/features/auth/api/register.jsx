@@ -5,7 +5,7 @@ import { useLogin } from "./login";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
 
 const register = async (user) => {
-	return await fetchWithCsrf("https://calendar-site.online:8080/api/v1/auth/register", {
+	return await fetchWithCsrf("https://calendar-site.online/api/v1/auth/register", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
