@@ -24,8 +24,6 @@ public class UserPassFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("here");
-        System.out.println("session: ");
-        System.out.println(request.getHeader("SESSION"));
         System.out.println("token");
         System.out.println(request.getHeader("X-XSRF-TOKEN"));
         System.out.println(request.getSession());
