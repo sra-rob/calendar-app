@@ -20,22 +20,25 @@ services:
   calendar-backend:
     image: littlebrownie/calendar-backend:latest
     restart: always
-    # ports:
-    #   - 8080:8080
     depends_on:
       mysql:
         condition: service_healthy
       redis:
         condition: service_healthy
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider localhost:8080/api/actuator/health || exit 1
+      timeout: 20s
+      retries: 30
   calendar-frontend:
     image: littlebrownie/calendar-frontend:latest
     restart: always
-    # ports:
-    #   - 80:80
-    depends_on:
-      calendar-backend:
-        condition: service_started
-  # certbot service ??
+    healthcheck:
+      test: ["CMD", "service", "nginx", "status"]
+      timeout: 20s
+      retries: 30
+    # depends_on:
+    #   calendar-backend:
+    #     condition: service_healthy
   reverse-proxy:
     build:
       context: ./reverse-proxy
@@ -46,6 +49,11 @@ services:
     volumes: 
       - ./letsencrypt:/letsencrypt
       - ./certs:/etc/letsencrypt
+    depends_on:
+      calendar-backend:
+        condition: service_healthy
+      calendar-frontend:
+        condition: service_healthy
 volumes:
   mysql-data:
   redis-data:
