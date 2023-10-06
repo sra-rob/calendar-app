@@ -52,7 +52,7 @@ public class SecurityConfig {
                 r -> {
                     CorsConfiguration configuration = new CorsConfiguration();
                     configuration.setAllowedOrigins(List.of(
-                            "https://reverse-proxy/"
+                            "https://calendar-site.online/"
                     ));
                     configuration.setAllowedHeaders(List.of("*"));
                     configuration.setAllowCredentials(true);
