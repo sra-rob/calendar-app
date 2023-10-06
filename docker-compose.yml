@@ -46,8 +46,8 @@ services:
       - 80:80
       - 443:443
     volumes: 
-      - ./letsencrypt:/letsencrypt
-      - ./certs:/etc/letsencrypt
+      - .:/letsencrypt
+      - ${PWD}/certs:/etc/letsencrypt
     depends_on:
       calendar-backend:
         condition: service_healthy
