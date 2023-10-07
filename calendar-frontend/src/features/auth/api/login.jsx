@@ -7,6 +7,7 @@ import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 export const login = async (params) => {
 	const { username, password } = params;
 	const userDetails = { username, password };
+	localStorage.clear();
 	return await fetchWithCsrf("https://calendar-site.online/api/v1/auth/login", {
 		method: "POST",
 		headers: {
