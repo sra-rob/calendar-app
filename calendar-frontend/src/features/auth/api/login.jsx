@@ -31,6 +31,7 @@ export const useLogin = () => {
 		queryKey: ["login"],
 		onSuccess: () => {
 			setAuth({ isLoggedIn: true });
+			window.localStorage.clear();
 			navigate("/app/events");
 		},
 		onError: () => {
