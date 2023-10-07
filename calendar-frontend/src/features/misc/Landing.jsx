@@ -162,7 +162,7 @@ export const Landing = () => {
 						`
 					}
 				>
-					<u>Bowowee is <b>mobile friendly</b> event tracking web application</u> that utilizes several interesting technologies.
+					<u>The Calendar Site is <b>mobile friendly</b> event tracking web application</u> that utilizes several interesting technologies.
 				</p>
 				<p
 					css={
@@ -192,7 +192,7 @@ export const Landing = () => {
 						`
 					}
 				>
-					Finally, for version control, I am using <b>Github</b>. After I push to my main branch<b><sub>2</sub></b>, <b>Github Actions</b> inserts my secrets and builds and dockerizes my Spring application. Likewise it builds and dockerizes my React application. After building my containers, Github Actions pushes my containers to <b>Dockerhub</b>, where the containers are later be pulled onto my <b>Google Compute Engine</b> virtual machine and ran. 
+					Finally, for version control, I am using <b>Github</b>. <b>Github Actions</b> inserts my secrets and builds and dockerizes my Spring application. Likewise it builds and dockerizes my React application. After building my containers, Github Actions pushes my containers to <b>Dockerhub</b>, where the containers are later be pulled onto my <b>Google Compute Engine</b> virtual machine and ran. 
 				</p>
 				<p
 					css={
@@ -203,9 +203,6 @@ export const Landing = () => {
 					}
 				>
 					1. Sessions can be considered a violation of REST principals. Though I'm of the opinion that as long as an API has the <a href="https://stackoverflow.com/a/6068298">properties of a pure function</a> it can still be considered RESTful.
-					<br />
-					<br />
-					2. Don't push to your main branch.
 				</p>
 				<Box>
 					<RowContainer

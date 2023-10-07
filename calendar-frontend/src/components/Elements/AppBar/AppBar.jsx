@@ -38,7 +38,7 @@ export const AppBar = () => {
 						} 
 						to="/"
 					>
-						<h1>Bowowee</h1>
+						<h1>Calendar Site</h1>
 					</Link>
 					<Button 
 						text={isLoggedIn ? "Logout" : "Login"}
