@@ -21,8 +21,7 @@ public class EventController {
     @GetMapping("{intervalStart}/{intervalEnd}")
     public List<Event> findByInterval(
             @PathVariable LocalDate intervalStart,
-            @PathVariable LocalDate intervalEnd,
-            HttpSession session
+            @PathVariable LocalDate intervalEnd
     ) {
         System.out.println("GET INTERVAL");
         System.out.println("GET INTERVAL");
@@ -35,17 +34,6 @@ public class EventController {
         System.out.println("GET INTERVAL");
         System.out.println("GET INTERVAL");
         System.out.println("GET INTERVAL");
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
-        System.out.println(session.getAttribute("username"));
         return eventService.findByInterval(intervalStart, intervalEnd);
     }
     @PostMapping
