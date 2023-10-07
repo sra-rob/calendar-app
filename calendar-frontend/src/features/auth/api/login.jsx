@@ -3,11 +3,11 @@ import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
 import { useNavigate } from "react-router-dom";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
+import { useQueryClient } from "react-query";
 
 export const login = async (params) => {
 	const { username, password } = params;
 	const userDetails = { username, password };
-	localStorage.clear();
 	return await fetchWithCsrf("https://calendar-site.online/api/v1/auth/login", {
 		method: "POST",
 		headers: {
@@ -27,15 +27,17 @@ export const useLogin = () => {
 	const setAuth = useAuthDispatchContext();
 	const navigate = useNavigate();
 	const setSnackbar = useSnackbarDispatchContext();
+	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: login,
 		queryKey: ["login"],
 		onSuccess: () => {
+			queryClient.clear();
 			setAuth({ isLoggedIn: true });
-			window.localStorage.clear();
 			navigate("/app/events");
 		},
 		onError: () => {
+			queryClient.clear();
 			setAuth({ isLoggedIn: false });
 			setSnackbar(prev => [ ...prev, { message: "Error logging in", key: new Date().getTime(), severity: "error" }]);
 		}
