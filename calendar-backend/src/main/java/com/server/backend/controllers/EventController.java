@@ -14,7 +14,9 @@ import java.util.List;
 
 public class EventController {
     private final EventService eventService;
-    public EventController(EventService eventService) {
+    private final HttpSession session;
+    public EventController(EventService eventService, HttpSession session) {
+        this.session = session;
         this.eventService = eventService;
     }
 
@@ -38,15 +40,30 @@ public class EventController {
     }
     @PostMapping
     public EventDto create(@RequestBody EventDto event) {
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
         EventDto res = eventService.create(event);
         return res;
     }
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id) {
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
         eventService.delete(id);
     }
     @PutMapping
     public EventDto update(@RequestBody EventDto event) {
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
         EventDto res = eventService.update(event);
         return res;
     }
