@@ -24,6 +24,7 @@ public class EventController {
             @PathVariable LocalDate intervalEnd,
             HttpSession session
     ) {
+        System.out.println("GET INTERVAL");
         System.out.println(session.getAttribute("username"));
         return eventService.findByInterval(intervalStart, intervalEnd);
     }
