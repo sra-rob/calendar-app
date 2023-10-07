@@ -1,6 +1,5 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
-
 const AuthContext = createContext(undefined);
 const AuthDispatchContext = createContext(undefined);
 
@@ -15,9 +14,10 @@ export const AuthProvider = ({ children }) => {
 				return res.json();
 			})
 			.then(loginStatus => {
-				if(loginStatus != auth.isLoggedIn)
-					loginStatus ? setAuth({ isLoggedIn: true }) : logoutQuery.mutate();
-					// setAuth({ isLoggedIn: loginStatus })
+				if(loginStatus != auth.isLoggedIn) {
+					if(!loginStatus) window.localStorage.clear();
+					setAuth({ isLoggedIn: loginStatus })
+				}					
 			});
 		}
 		isLoggedIn();
