@@ -18,6 +18,7 @@ export const useLogout = () => {
 		mutationFn: logout,
 		onSuccess: () => {
 			navigate("/auth/login");
+			window.localStorage.clear();
 			setAuth({ isLoggedIn: false })
 		},
 		onFailure: () => {
