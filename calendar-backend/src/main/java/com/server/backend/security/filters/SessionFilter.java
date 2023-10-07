@@ -20,7 +20,7 @@ public class SessionFilter extends OncePerRequestFilter {
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if(!request.getRequestURI().equals("/auth/login")) {
+        if(!request.getRequestURI().equals("/api/v1/auth/login")) {
             String username = (String) session.getAttribute("username");
             if (username != null) {
                 System.out.println(username);
