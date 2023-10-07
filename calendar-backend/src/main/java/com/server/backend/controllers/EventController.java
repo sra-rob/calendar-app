@@ -25,6 +25,16 @@ public class EventController {
             HttpSession session
     ) {
         System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
+        System.out.println("GET INTERVAL");
         System.out.println(session.getAttribute("username"));
         System.out.println(session.getAttribute("username"));
         System.out.println(session.getAttribute("username"));
