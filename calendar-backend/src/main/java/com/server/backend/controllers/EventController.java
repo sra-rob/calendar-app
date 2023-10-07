@@ -3,6 +3,7 @@ package com.server.backend.controllers;
 import com.server.backend.entities.Event;
 import com.server.backend.entities.dtos.EventDto;
 import com.server.backend.services.EventService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -20,8 +21,10 @@ public class EventController {
     @GetMapping("{intervalStart}/{intervalEnd}")
     public List<Event> findByInterval(
             @PathVariable LocalDate intervalStart,
-            @PathVariable LocalDate intervalEnd
+            @PathVariable LocalDate intervalEnd,
+            HttpSession session
     ) {
+        System.out.println(session.getAttribute("username"));
         return eventService.findByInterval(intervalStart, intervalEnd);
     }
     @PostMapping
