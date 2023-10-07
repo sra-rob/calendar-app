@@ -15,6 +15,12 @@ public class User implements Serializable {
     private String username;
     @Size(min=8, message="password must not be less than 8 characters")
     private String password;
+    public User() {}
+    public User(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;

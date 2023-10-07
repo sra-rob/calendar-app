@@ -18,6 +18,16 @@ public class Event {
     private LocalDate startDate;
     private LocalTime startTime;
     private LocalTime endTime;
+    public Event() {}
+    public Event(Long id, String title, LocalDate startDate, LocalTime startTime, LocalTime endTime, User user) {
+        this.id = id;
+        this.title = title;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.user = user;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
