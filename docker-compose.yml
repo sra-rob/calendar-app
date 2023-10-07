@@ -47,7 +47,7 @@ services:
       - 443:443
     volumes: 
       - .:/letsencrypt
-      - ${PWD}/certs:/etc/letsencrypt
+      - ./certs:/etc/letsencrypt
     depends_on:
       calendar-backend:
         condition: service_healthy
