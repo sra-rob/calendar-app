@@ -23,24 +23,19 @@ public class UserPassFilter extends OncePerRequestFilter {
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("ENTERING USERPASS FILTER");
         if(request.getRequestURI().equals("/api/v1/auth/login")) {
-            System.out.println("USERPASS REQUEST TO LOGIN ENDPOINT: %s");
             UserDto unAuthedUser = objectMapper.readValue(request.getInputStream(), UserDto.class);
             String username = unAuthedUser.getUsername();
             String password = unAuthedUser.getPassword();
             UserPassAuth authentication = new UserPassAuth(username, password, false);
             UserPassAuth auth = (UserPassAuth) authManager.authenticate(authentication);
             if(auth.isAuthenticated()) {
-                System.out.println("USERPASS LOGIN IS AUTHENTICATED");
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 request.getSession().setAttribute("username", username);
             } else {
-                System.out.println("USERPASS LOGIN IS NOT AUTHENTICATED");
                 filterChain.doFilter(request, response);
             }
         } else {
-            System.out.println("USERPASS REQUEST NOT TO LOGIN ENDPOINT");
             filterChain.doFilter(request, response);
         }
     }

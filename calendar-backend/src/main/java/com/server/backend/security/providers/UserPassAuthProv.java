@@ -20,16 +20,13 @@ public class UserPassAuthProv implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        System.out.println("ENTERING USERPASS AUTH PROVIDER");
         UserPassAuth auth = (UserPassAuth) authentication;
         String username = auth.getName();
         String password = auth.getPassword();
         SecurityUser securityUser = (SecurityUser) userDetailsService.loadUserByUsername(username);
         if(passwordEncoder.matches(password, securityUser.getPassword())) {
-            System.out.println("PASSWORD DOES NOT MATCH");
             return new UserPassAuth(username, password, true);
         } else {
-            System.out.println("PASSWORD DOES MATCH");
             return authentication;
         }
      }
