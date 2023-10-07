@@ -49,7 +49,7 @@ public class SecurityConfig {
                             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                             .csrfTokenRequestHandler(requestHandler)
             );
-        http.cors().disable();
+//        http.cors().disable();
 //        http.cors(c -> c.configurationSource(
 //                r -> {
 //                    CorsConfiguration configuration = new CorsConfiguration();
