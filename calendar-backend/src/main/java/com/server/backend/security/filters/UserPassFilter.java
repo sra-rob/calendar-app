@@ -27,6 +27,8 @@ public class UserPassFilter extends OncePerRequestFilter {
             UserDto unAuthedUser = objectMapper.readValue(request.getInputStream(), UserDto.class);
             String username = unAuthedUser.getUsername();
             String password = unAuthedUser.getPassword();
+            System.out.println(username);
+            System.out.println(password);
             UserPassAuth authentication = new UserPassAuth(username, password, false);
             UserPassAuth auth = (UserPassAuth) authManager.authenticate(authentication);
             if(auth.isAuthenticated()) {
