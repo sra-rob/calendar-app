@@ -32,6 +32,7 @@ public class UserPassFilter extends OncePerRequestFilter {
         System.out.println("URI:: ");
         System.out.println(request.getRequestURI());
         if(request.getRequestURI().equals("/auth/login")) {
+            System.out.println("ENTERING AUTH LOGIN");
             UserDto unAuthedUser = objectMapper.readValue(request.getInputStream(), UserDto.class);
             String username = unAuthedUser.getUsername();
             String password = unAuthedUser.getPassword();
