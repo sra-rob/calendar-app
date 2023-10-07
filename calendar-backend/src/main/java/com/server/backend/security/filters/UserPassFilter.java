@@ -38,12 +38,16 @@ public class UserPassFilter extends OncePerRequestFilter {
             UserPassAuth authentication = new UserPassAuth(username, password, false);
             UserPassAuth auth = (UserPassAuth) authManager.authenticate(authentication);
             if(auth.isAuthenticated()) {
+                System.out.println("USERPASS AUTHENTICATED");
                 System.out.println("UserPass Auth");
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 System.out.println("SETTING USERNAME:: ");
                 System.out.println(username);
                 request.getSession().setAttribute("username", username);
-            } else filterChain.doFilter(request, response);
+            } else {
+                System.out.println("USER PASS NOT AUTHENTICATED");
+                filterChain.doFilter(request, response);
+            }
         } else filterChain.doFilter(request, response);
     }
 }
