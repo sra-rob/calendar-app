@@ -23,32 +23,25 @@ public class UserPassFilter extends OncePerRequestFilter {
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("TOKEN::");
-        System.out.println(request.getHeader("X-XSRF-TOKEN"));
-        System.out.println("SESSION::");
-        System.out.println(request.getSession().toString());
-        System.out.println("URL:: ");
-        System.out.println(request.getRequestURL());
-        System.out.println("URI:: ");
-        System.out.println(request.getRequestURI());
+        System.out.println("ENTERING USERPASS FILTER");
         if(request.getRequestURI().equals("/auth/login")) {
-            System.out.println("ENTERING AUTH LOGIN");
+            System.out.println("USERPASS REQUEST TO LOGIN ENDPOINT");
             UserDto unAuthedUser = objectMapper.readValue(request.getInputStream(), UserDto.class);
             String username = unAuthedUser.getUsername();
             String password = unAuthedUser.getPassword();
             UserPassAuth authentication = new UserPassAuth(username, password, false);
             UserPassAuth auth = (UserPassAuth) authManager.authenticate(authentication);
             if(auth.isAuthenticated()) {
-                System.out.println("USERPASS AUTHENTICATED");
-                System.out.println("UserPass Auth");
+                System.out.println("USERPASS LOGIN IS AUTHENTICATED");
                 SecurityContextHolder.getContext().setAuthentication(auth);
-                System.out.println("SETTING USERNAME:: ");
-                System.out.println(username);
                 request.getSession().setAttribute("username", username);
             } else {
-                System.out.println("USER PASS NOT AUTHENTICATED");
+                System.out.println("USERPASS LOGIN IS NOT AUTHENTICATED");
                 filterChain.doFilter(request, response);
             }
-        } else filterChain.doFilter(request, response);
+        } else {
+            System.out.println("USERPASS REQUEST NOT TO LOGIN ENDPOINT");
+            filterChain.doFilter(request, response);
+        }
     }
 }
