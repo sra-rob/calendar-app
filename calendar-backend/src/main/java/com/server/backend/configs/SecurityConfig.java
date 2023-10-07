@@ -49,20 +49,21 @@ public class SecurityConfig {
                             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                             .csrfTokenRequestHandler(requestHandler)
             );
-        http.cors(c -> c.configurationSource(
-                r -> {
-                    CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(List.of(
-                            "https://calendar-site.online"
-                    ));
-                    configuration.setAllowedHeaders(List.of("*"));
-                    configuration.setAllowCredentials(true);
-                    configuration.setAllowedMethods(List.of(
-                            "GET", "POST", "DELETE", "PUT", "OPTIONS"
-                    ));
-                    return configuration;
-                }
-        ));
+        http.cors().disable();
+//        http.cors(c -> c.configurationSource(
+//                r -> {
+//                    CorsConfiguration configuration = new CorsConfiguration();
+//                    configuration.setAllowedOrigins(List.of(
+//                            "https://calendar-site.online"
+//                    ));
+//                    configuration.setAllowedHeaders(List.of("*"));
+//                    configuration.setAllowCredentials(true);
+//                    configuration.setAllowedMethods(List.of(
+//                            "GET", "POST", "DELETE", "PUT", "OPTIONS"
+//                    ));
+//                    return configuration;
+//                }
+//        ));
         return http.build();
     }
 }
