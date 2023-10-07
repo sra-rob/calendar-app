@@ -36,6 +36,11 @@ public class EventController {
         System.out.println("GET INTERVAL");
         System.out.println("GET INTERVAL");
         System.out.println("GET INTERVAL");
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
+        System.out.println(session.getAttribute("username"));
         return eventService.findByInterval(intervalStart, intervalEnd);
     }
     @PostMapping
