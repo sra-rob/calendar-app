@@ -6,4 +6,4 @@ ENV DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
 ENV DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD} 
 ENV ENVIRONMENT_TYPE=${ENVIRONMENT_TYPE}
 COPY . .
-ENTRYPOINT [ "java", "-jar", "./target/backend-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=\"prod\""]
+ENTRYPOINT [ "java", "-jar", "./target/backend-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
