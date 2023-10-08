@@ -35,4 +35,5 @@ jobs:
           build-args: |
             DATASOURCE_USERNAME=${{ secrets.DATASOURCE_USERNAME }}
             DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }}
+            ENVIRONMENT_TYPE="prod"
             

@@ -3,9 +3,10 @@ import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
 import { useLogin } from "./login";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
+import { API_URL } from "@/environment";
 
 const register = async (user) => {
-	return await fetchWithCsrf("https://calendar-site.online/api/v1/auth/register", {
+	return await fetchWithCsrf(`${API_URL}/api/v1/auth/register`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"

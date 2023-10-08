@@ -5,10 +5,11 @@ import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "@/environment";
 
 const deleteEvent = (params) => {
 	const { id } = params;
-	return fetchWithCsrf(`https://calendar-site.online/api/v1/event/${id}`, {
+	return fetchWithCsrf(`${API_URL}/api/v1/event/${id}`, {
 		method: "DELETE",
 		credentials: "include"
 	})

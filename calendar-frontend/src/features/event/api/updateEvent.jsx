@@ -1,14 +1,14 @@
-import dayjs from "dayjs";
 import { useMutation, useQueryClient } from "react-query";
 import { calculateDateInterval } from "@/utils/calculateDateInterval";
 import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "@/environment";
 
 const updateEvent = async (params) => {
 	const { event } = params;
-	return await fetchWithCsrf("https://calendar-site.online/api/v1/event", {
+	return await fetchWithCsrf(`${API_URL}/api/v1/event`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",

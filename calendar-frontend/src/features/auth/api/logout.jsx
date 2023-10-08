@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 import { useQueryClient } from "react-query";
+import { API_URL } from "@/environment";
 
 const logout = async () => {
-	return await fetchWithCsrf("https://calendar-site.online/api/v1/auth/logout", {
+	return await fetchWithCsrf(`${API_URL}/api/v1/auth/logout`, {
 		method: "POST",
 		credentials: "include"
 	})

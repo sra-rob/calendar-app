@@ -6,10 +6,11 @@ import { useEventContext } from "@/providers/EventProvider";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "@/environment";
 
 const createEvent = (params) => {
 	const { event } = params;
-	return fetchWithCsrf("https://calendar-site.online/api/v1/event", {
+	return fetchWithCsrf(`${API_URL}/api/v1/event`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

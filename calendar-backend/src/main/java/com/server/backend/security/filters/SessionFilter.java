@@ -1,7 +1,6 @@
 package com.server.backend.security.filters;
 
 import com.server.backend.security.authentications.SessionAuth;
-import jakarta.persistence.Enumerated;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

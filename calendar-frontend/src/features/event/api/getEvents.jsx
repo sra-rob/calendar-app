@@ -4,9 +4,10 @@ import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
 import { useNavigate } from "react-router-dom";
 import { useAuthDispatchContext } from "@/providers/AuthProvider";
 import { useSnackbarDispatchContext } from "@/providers/SnackbarProvider";
+import { API_URL } from "@/environment";
 
 export const getEvents = (startDate, endDate) => {
-	return fetchWithCsrf(`https://calendar-site.online/api/v1/event/${startDate}/${endDate}`, {
+	return fetchWithCsrf(`${API_URL}/api/v1/event/${startDate}/${endDate}`, {
 		credentials: "include"
 	})
 		.then(res => res.json());

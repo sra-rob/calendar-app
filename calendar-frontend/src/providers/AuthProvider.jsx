@@ -1,5 +1,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { fetchWithCsrf } from "@/utils/fetchWithCsrf";
+import { API_URL } from "@/environment";
+
 const AuthContext = createContext(undefined);
 const AuthDispatchContext = createContext(undefined);
 
@@ -7,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 	const [ auth, setAuth ] = useState({});
 	useEffect(() => {
 		const isLoggedIn = async () => {
-			await fetchWithCsrf("https://calendar-site.online/api/v1/auth/user", {
+			await fetchWithCsrf(`${API_URL}/api/v1/auth/user`, {
 				method: "POST",
 				credentials: "include"
 			}).then(res => {

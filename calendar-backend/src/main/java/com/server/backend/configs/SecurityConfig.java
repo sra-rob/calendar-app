@@ -5,6 +5,8 @@ import com.server.backend.security.AuthManager;
 import com.server.backend.security.filters.SessionFilter;
 import com.server.backend.security.filters.UserPassFilter;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -15,6 +17,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.csrf.*;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 
 import java.util.List;
 
@@ -25,6 +30,8 @@ public class SecurityConfig {
     private final AuthManager authManager;
     private final ObjectMapper objectMapper;
     private  final HttpSession session;
+    @Value("${spring.profiles.active}")
+    private String ENVIRONMENT;
 
     public SecurityConfig(AuthManager authManager, ObjectMapper objectMapper, HttpSession session) {
         this.authManager = authManager;
@@ -49,21 +56,22 @@ public class SecurityConfig {
                             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                             .csrfTokenRequestHandler(requestHandler)
             );
-//        http.cors().disable();
-//        http.cors(c -> c.configurationSource(
-//                r -> {
-//                    CorsConfiguration configuration = new CorsConfiguration();
-//                    configuration.setAllowedOrigins(List.of(
-//                            "https://calendar-site.online"
-//                    ));
-//                    configuration.setAllowedHeaders(List.of("*"));
-//                    configuration.setAllowCredentials(true);
-//                    configuration.setAllowedMethods(List.of(
-//                            "GET", "POST", "DELETE", "PUT", "OPTIONS"
-//                    ));
-//                    return configuration;
-//                }
-//        ));
+        if(ENVIRONMENT.equals("dev")) {
+            http.cors(c -> c.configurationSource(
+                    r -> {
+                        CorsConfiguration configuration = new CorsConfiguration();
+                        configuration.setAllowedOrigins(List.of(
+                                "http://localhost:5173"
+                        ));
+                        configuration.setAllowedHeaders(List.of("*"));
+                        configuration.setAllowCredentials(true);
+                        configuration.setAllowedMethods(List.of(
+                                "GET", "POST", "DELETE", "PUT", "OPTIONS"
+                        ));
+                        return configuration;
+                    }
+            ));
+        }
         return http.build();
     }
 }
