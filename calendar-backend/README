@@ -1,0 +1,7 @@
+CALENDAR-BACKEND
+  1. Set environment variable "ENVIRONMENT_TYPE" to "dev"
+  2. Run 
+    - ../docker-compose -f "docker-compose.dev.yml" up -d
+  3. Wait for mysql and redis to start
+  4. Run 
+    - nohup ./mvnw spring-boot:run
