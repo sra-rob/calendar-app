@@ -12,4 +12,4 @@ CALENDAR-FRONTEND
     - cd calendar-frontend && npm i && nohup npm run dev & cd ../
 
 POTENTIAL ERRORS
-- If you are getting errors related to the ENVIRONMENT_TYPE environment variable you set at step 1 (CALENDAR-BACKEND), close vscode, intellij, terminal... and reopen it.
+- If you are getting errors related to the ENVIRONMENT_TYPE environment variable you set at step 1 (CALENDAR-BACKEND): close vscode, intellij, terminal... and reopen it.
