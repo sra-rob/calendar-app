@@ -1,7 +1,7 @@
 import { css } from "@mui/material";
 import { Button as MuiButton } from "@mui/material";
 
-export const Button = ({ text, buttonType, variant="contained", type, onClick }) => {
+export const Button = ({ text, buttonType, variant="contained", type, onClick, width }) => {
 	const primary = css`
 		background: var(--color-primary-400);
 		&:hover {
@@ -24,6 +24,7 @@ export const Button = ({ text, buttonType, variant="contained", type, onClick })
 		${buttonType === "primary" && primary}
 		${buttonType === "secondary" && secondary}
 		${buttonType === "accent" && accent}
+		width: ${width}
 	`
 	return(
 		<MuiButton

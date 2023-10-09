@@ -5,6 +5,7 @@ import { RowContainer } from "@/components/Elements";
 import { Button } from "@/components/Elements";
 import { Link } from "@/components/Elements/Button";
 import { useAuthContext } from "@/providers/AuthProvider";
+
 export const Landing = () => {
 	const { isLoggedIn } = useAuthContext();
 	const navigate = useNavigate();
@@ -14,6 +15,14 @@ export const Landing = () => {
 	const handleUnauthenticatedUser = () => {
 		navigate("/auth/login");
 	}
+	const technologyHeaderStyle = css`
+		color: var(--color-accent-700);
+		margin-bottom: 0.25rem;
+	`
+	const sectionHeader = css`
+		color: var(--color-primary-700);
+		font-size: 1.6rem;
+	`
 	return(
 		<Box
 			css={
@@ -33,124 +42,93 @@ export const Landing = () => {
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
-						align-items: center;
 						gap: 1rem;
 						margin: 0 auto;
 						overflow: hidden;
 						padding-bottom: 2rem;
 						padding-inline: 2rem;
-						ul {
-							list-style: none;
-							padding: 0;
-						}
-						li {
-							margin-top: 0.5rem;
-						}
 					`
 				}
 			>
-				<h1
+				<Box
 					css={
 						css`
+							display: flex;
+							flex-direction: column;
 							color: var(--color-primary-700);
+							gap: 0.25rem;
+							@media(min-width: 800px) {
+								flex-direction: row;
+							}
 						`
 					}
 				>
-					Bowowee
+					<h1
+						css={
+							css`
+								color: var(--color-primary-700);
+								width: 100%;
+							`
+						}
+					>
+					Calendar Site
 				</h1>
-				<h2
-					css={
-						css`
-							color: var(--color-primary-700);
-						`
-					}
-				>Technology</h2>
-				<RowContainer
-					alignItems="flex-start"
-					justifyContent="flex-start"
-					g="1rem"
+					<Button 
+						text="Get started" 
+						buttonType="primary"
+						onClick={isLoggedIn ? handleAuthenticatedUser : handleUnauthenticatedUser}
+						width="100%"
+					/>
+				</Box>
+				{/* <RowContainer
+					justifyContent="space-between"
 				>
-					<Box>
-						<h3
-							css={
-								css`
-									color: var(--color-accent-700);
-									text-align: center;
-								`
-							}
-						>
-							Backend
-						</h3>
-						<ul
-							css={
-								css`
-									text-align: center;
-								`
-							}
-						>
-							<li>Spring Web</li>
-							<li>Spring Security</li>
-							<li>Hibernate</li>
-							<li>Spring Data JPA</li>
-							<li>Spring Data Redis</li>
-							<li>Spring Session</li>
-							<li>MySQL</li>
-						</ul>
-					</Box>
-					<Box>
-						<h3
-							css={
-								css`
-									color: var(--color-accent-700);
-									text-align: center;
-								`
-							}
-						>Frontend</h3>
-						<ul
-							css={
-								css`
-									text-align: center;
-								`
-							}
-						>
-							<li>React</li>
-							<li>React Query</li>
-							<li>Emotion</li>
-							<li>Material UI</li>
-							<li>CSS</li>
-						</ul>
-					</Box>
-					<Box>
-						<h3
-							css={
-								css`
-									color: var(--color-accent-700);
-									text-align: center;
-								`
-							}
-						>
-							Deployment
-						</h3>
-						<ul
-							css={
-								css`
-									text-align: center;
-								`
-							}
-						>
-							<li>Google Compute Engine</li>
-							<li>Github Actions</li>
-							<li>Docker</li>
-							<li>Docker Hub</li>
-						</ul>
-					</Box>
-				</RowContainer>
+					<h1
+						css={
+							css`
+								color: var(--color-primary-700);
+							`
+						}
+					>
+					Calendar Site
+				</h1>
+					<Button 
+						text="Get started" 
+						buttonType="primary"
+						onClick={isLoggedIn ? handleAuthenticatedUser : handleUnauthenticatedUser}
+					/>
+				</RowContainer> */}
 				<h2
-					css={
-						css`
-							color: var(--color-primary-700);
-						`
-					}
+					css={sectionHeader}
+				>
+					Technology
+				</h2>
+				<Box>
+					<h3
+						css={technologyHeaderStyle}
+					>
+						Backend
+					</h3>
+					<p>Spring Web, Spring Security, Hibernate, Spring Data JPA, Spring Data Redis, Spring Session, MySQL</p>
+				</Box>
+				<Box>
+					<h3
+						css={technologyHeaderStyle}
+					>
+						Frontend
+					</h3>
+					<p>React, Reacty Query, Emotion, Material UI, CSS</p>
+				</Box>
+				<Box>
+					<h3
+						css={technologyHeaderStyle}
+					>
+						Deployment
+					</h3>
+					<p>Google Compute Engine, Github, Github Actions, Docker, Docker Hub</p>
+				</Box>
+				<h2
+					css={sectionHeader}
 				>
 					Overview
 				</h2>
@@ -205,9 +183,7 @@ export const Landing = () => {
 					1. Sessions can be considered a violation of REST principals. Though I'm of the opinion that as long as an API has the <a href="https://stackoverflow.com/a/6068298">properties of a pure function</a> it can still be considered RESTful.
 				</p>
 				<Box>
-					<RowContainer
-						justifyContent="space-between"
-					>
+					<RowContainer>
 						<Button 
 							text="Get started" 
 							buttonType="primary"
