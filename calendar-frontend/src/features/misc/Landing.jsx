@@ -109,7 +109,7 @@ export const Landing = () => {
 					>
 						Backend
 					</h3>
-					<p>Spring Web, Spring Security, Hibernate, Spring Data JPA, Spring Data Redis, Spring Session, MySQL</p>
+					<p>Spring Web, Spring Security, Spring Data JPA, Spring Data Redis, Spring Session, MySQL</p>
 				</Box>
 				<Box>
 					<h3
@@ -160,7 +160,7 @@ export const Landing = () => {
 						`
 					}
 				>
-					The backend was created using <b>Spring Web</b>. To handle the web application's authentication and authorization I am using <b>Spring Security</b> and <b>Spring Session</b>. For session management I am using <b>Spring Data Redis</b>. My database of choice is <b>MySQL</b>. <b>Hibernate</b> is the ORM, and I am using <b>Spring Data JPA</b> to reduce the complexity of building the data access layers.
+					The backend was created using <b>Spring Web</b>. To handle the web application's authentication and authorization I am using <b>Spring Security</b> and <b>Spring Session</b>. For session management I am using <b>Spring Data Redis</b>. My database of choice is <b>MySQL</b>, and I am using <b>Spring Data JPA</b> to reduce the complexity of building the data access layers.
 				</p>
 				<p
 					css={
