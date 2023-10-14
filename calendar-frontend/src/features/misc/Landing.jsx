@@ -160,7 +160,7 @@ export const Landing = () => {
 						`
 					}
 				>
-					The backend is a <b>REST API<sub>1</sub></b> created using <b>Spring Web</b>. To handle the web application's authentication and authorization I am using <b>Spring Security</b> and <b>Spring Session</b>. For session management I am using <b>Spring Data Redis</b>. My database of choice is <b>MySQL</b>. <b>Hibernate</b> is the ORM, and I am using <b>Spring Data JPA</b> to reduce the complexity of building the data access layers.
+					The backend was created using <b>Spring Web</b>. To handle the web application's authentication and authorization I am using <b>Spring Security</b> and <b>Spring Session</b>. For session management I am using <b>Spring Data Redis</b>. My database of choice is <b>MySQL</b>. <b>Hibernate</b> is the ORM, and I am using <b>Spring Data JPA</b> to reduce the complexity of building the data access layers.
 				</p>
 				<p
 					css={
@@ -171,16 +171,6 @@ export const Landing = () => {
 					}
 				>
 					Finally, for version control, I am using <b>Github</b>. <b>Github Actions</b> inserts my secrets and builds and dockerizes my Spring application. Likewise it builds and dockerizes my React application. After building my containers, Github Actions pushes my containers to <b>Dockerhub</b>, where the containers are later be pulled onto my <b>Google Compute Engine</b> virtual machine and ran. 
-				</p>
-				<p
-					css={
-						css`
-							align-self: start;
-							font-size: 0.65rem;
-						`
-					}
-				>
-					1. Sessions can be considered a violation of REST principals. Though I'm of the opinion that as long as an API has the <a href="https://stackoverflow.com/a/6068298">properties of a pure function</a> it can still be considered RESTful.
 				</p>
 				<Box>
 					<RowContainer>
